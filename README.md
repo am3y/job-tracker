@@ -40,4 +40,4 @@ The Job Tracker is a Flask-based web application designed to track job applicati
 - **Job Board Metrics Page**: View metrics related to different job boards.
 
 #### Note
-    To make changes or add any job board, you can edit the `boards.json` file.
+To make changes or add any job board, you can edit the `boards.json` file.
