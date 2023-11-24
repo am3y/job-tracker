@@ -1,0 +1,7 @@
+{
+    "MYSQL_USER": "jobtracker",
+    "MYSQL_PASSWORD": "jobtracker",
+    "MYSQL_HOST": "jobtracker.ckryo6z0ojq2.ap-south-1.rds.amazonaws.com",
+    "MYSQL_DB": "jobtracker",
+    "MYSQL_PORT": 3306
+}

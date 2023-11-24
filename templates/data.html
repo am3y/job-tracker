@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Tracker Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body, h1, h2, h3, p, form, input, select, button, a {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+        body {
+            background-color: #f4f4f8;
+            color: #102a43;
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(to right, #5f2c82, #49a09d);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #5f2c82;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: #5f2c82;
+            padding: 8px 16px;
+            text-decoration: none;
+            background-color: #f4f4f8;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #e4e4ee;
+        }
+        .expired { 
+            background-color: #ffcccc; /* light red for expired job entries */
+        }
+        .back-button {
+            background: #5f2c82;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background: #3c5aa6;
+        }
+        .expired {
+        background-color: #ffcccc; /* light red for expired job entries */
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Job Tracker Data</h1>
+    </header>
+    <div class="container">
+        <a href="/" class="back-button">Back to Home</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Company Name</th>
+                    <th>Job Portal</th>
+                    <th>Position</th>
+                    <th>Job Post Date</th>
+                    <th>Number of Applicants</th>
+                    <th>Link</th>
+                    <th>Applied Date</th>
+                    <th>Rejected Date</th>
+                    <th>Job Expired Date</th>
+                    <th>Interview</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr class="{{ 'expired' if job.job_expired_date and job.job_expired_date != '0000-00-00' else '' }}">
+                    <td>{{ job.date.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ job.time.strftime('%I:%M:%S %p') }}</td>
+                    <td>{{ job.company_name }}</td>
+                    <td>{{ job.job_portal }}</td>
+                    <td>{{ job.position }}</td>
+                    <td>{{ job.job_post_date.strftime('%Y-%m-%d') if job.job_post_date else 'N/A' }}</td>
+                    <td>{{ job.number_applicants }}</td>
+                    <td><a href="{{ job.link }}" target="_blank">Link</a></td>
+                    <td>{{ job.applied_date.strftime('%Y-%m-%d') if job.applied_date else 'N/A' }}</td>
+                    <td>{{ job.rejected_date.strftime('%Y-%m-%d') if job.rejected_date else 'N/A' }}</td>
+                    <td>{{ job.job_expired_date.strftime('%Y-%m-%d') if job.job_expired_date else 'N/A' }}</td>
+                    <td>{{ job.interview }}</td>
+                    <td><a href="{{ url_for('edit_entry', job_id=job.id) }}">Edit</a></td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="13">No data available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

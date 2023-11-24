@@ -1,0 +1,19 @@
+[
+    {"name": "LinkedIn", "link": "https://www.linkedin.com/jobs"},
+    {"name": "Cutshort", "link": "https://cutshort.io"},
+    {"name": "Instahyre", "link": "https://www.instahyre.com"},
+    {"name": "Naukri", "link": "https://www.naukri.com"},
+    {"name": "Angellist", "link": "https://angel.co"},
+    {"name": "YCJobs", "link": "https://www.ycombinator.com/jobs"},
+    {"name": "Hirest", "link": "https://www.hirist.com"},
+    {"name": "Indeed", "link": "https://in.indeed.com"},
+    {"name": "Jooble", "link": "https://jooble.org"},
+    {"name": "Glassdoor", "link": "https://www.glassdoor.co.in"},
+    {"name": "Simplyhired", "link": "https://www.simplyhired.com"},
+    {"name": "Dice", "link": "https://www.dice.com"},
+    {"name": "Nodesk", "link": "https://nodesk.co"},
+    {"name": "The Muse", "link": "https://www.themuse.com"},
+    {"name": "Hired", "link": "https://hired.com"},
+    {"name": "Toptal", "link": "https://www.toptal.com"},
+    {"name": "Remotive", "link": "https://remotive.com"}
+]

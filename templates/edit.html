@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Entry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body, h1, form, input, select, button, a {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+        body {
+            background-color: #f4f4f8;
+            color: #102a43;
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(to right, #5f2c82, #49a09d);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 17px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to right, #5f2c82, #49a09d);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            opacity: 0.9;
+        }
+        a.back-button {
+            color: #5f2c82;
+            padding: 8px 16px;
+            text-decoration: none;
+            background-color: #f4f4f8;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        a.back-button:hover {
+            background-color: #e4e4ee;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Edit Job Entry</h1>
+    </header>
+    <div class="container">
+        <form action="/edit/{{ job.id }}" method="post">
+            <label for="numberApplicants">Number of Applicants:</label>
+            <input type="number" id="numberApplicants" name="numberApplicants" value="{{ job.number_applicants }}">
+
+            <label for="appliedDate">Applied Date:</label>
+            <input type="date" id="appliedDate" name="appliedDate" value="{{ job.applied_date }}">
+
+            <label for="rejectedDate">Rejected Date:</label>
+            <input type="date" id="rejectedDate" name="rejectedDate" value="{{ job.rejected_date }}">
+
+            <label for="jobExpiredDate">Job Expired Date:</label>
+            <input type="date" id="jobExpiredDate" name="jobExpiredDate" value="{{ job.job_expired_date }}">
+
+            <label for="interview">Interview:</label>
+            <select id="interview" name="interview">
+                <option value="Yes" {% if job.interview == 'Yes' %}selected{% endif %}>Yes</option>
+                <option value="No" {% if job.interview == 'No' %}selected{% endif %}>No</option>
+            </select>
+
+            <input type="submit" value="Update">
+        </form>
+        <a href="/data" class="back-button">Back to Job Tracker Data</a>
+    </div>
+</body>
+</html>

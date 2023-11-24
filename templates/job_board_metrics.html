@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Board Metrics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body, h1, form, input, select, button, a {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+        body {
+            background-color: #f4f4f8;
+            color: #102a43;
+        }
+        .container {
+            width: 100%;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(to right, #5f2c82, #49a09d);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #5f2c82;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        select {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        a {
+            color: #5f2c82;
+            padding: 8px 16px;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            background-color: #f4f4f8;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #e4e4ee;
+        }
+        .back-button {
+            background: #5f2c82;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            transition: background 0.3s ease;
+        }
+        .back-button:hover {
+            background: #3c5aa6;
+        }
+        /* Adjust the title container */
+        .title-container {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .title-container h1 {
+            display: inline-block;
+            background: linear-gradient(to right, #5f2c82, #49a09d);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-button">Back to Home</a>
+    <div class="title-container">
+        <h1>Job Detail Metrics</h1>
+    </div>
+
+    <div class="container">
+        <form action="/job_board_metrics" method="get">
+            <label for="job_board">Select Job Board:</label>
+            <select name="job_board" id="job_board" onchange="this.form.submit()">
+                <option value="">All Job Boards</option>
+                {% for board in job_boards %}
+                <option value="{{ board.name }}" {% if selected_job_board == board.name %}selected{% endif %}>{{ board.name }}</option>
+                {% endfor %}
+            </select>
+        </form>        
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Total Number of Jobs Saved</th>
+                    <th>Total Number of Jobs Applied</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for metric in metrics_data %}
+                <tr>
+                    <td>{{ metric.date }}</td>
+                    <td>{{ metric.total_jobs_saved }}</td>
+                    <td>{{ metric.total_jobs_applied }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3">No data available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
